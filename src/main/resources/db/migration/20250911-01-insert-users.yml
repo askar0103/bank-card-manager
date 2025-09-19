@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20250911-01-insert-users
+      author: askar
+      changes:
+        # --- admin ---
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 1
+              - column:
+                  name: username
+                  value: "admin"
+              - column:
+                  name: password_hash
+                  # --- admin ---
+                  value: "{bcrypt}$2a$12$DXMfYqmIV501gQng94n06eM5JbJxp/9QZ20ejnOCbB7GjILNtrgBe"
+              - column:
+                  name: role
+                  value: "ADMIN"
+
+        # --- alice ---
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 2
+              - column:
+                  name: username
+                  value: "alice"
+              - column:
+                  name: password_hash
+                  # --- alice ---
+                  value: "{bcrypt}$2a$12$u9qC98P1jr/xDsotlZq6xeL9NJ0eEorQOdl2XoUch8rwPaVxw0C9K"
+              - column:
+                  name: role
+                  value: "USER"
+
+        # --- bob ---
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 3
+              - column:
+                  name: username
+                  value: "bob"
+              - column:
+                  name: password_hash
+                  # --- bob ---
+                  value: "{bcrypt}$2a$12$/xVYdTMW0GekIDjbj9JrIuOOzkD86mP7B2ATSHOcNeKMWM/x422ym"
+              - column:
+                  name: role
+                  value: "USER"

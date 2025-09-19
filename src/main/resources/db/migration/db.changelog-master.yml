@@ -1,0 +1,12 @@
+databaseChangeLog:
+  - include:
+      file: 20250910-01-create-users-table.yml
+      relativeToChangeLogFile: true
+
+  - include:
+      file: 20250910-02-create-cards-table.yml
+      relativeToChangeLogFile: true
+
+  - include:
+      file: 20250911-01-insert-users.yml
+      relativeToChangeLogFile: true

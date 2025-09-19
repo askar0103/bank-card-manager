@@ -1,0 +1,62 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: bank-card-manager
+
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST}:${POSTGRES_PORT:5432}/${POSTGRES_DB}
+    username: ${POSTGRES_USER}
+    password: ${POSTGRES_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: true
+
+  liquibase:
+    enabled: true
+    change-log: classpath:db/migration/db.changelog-master.yml
+
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 20
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    tags-sorter: alpha
+
+logging:
+  level:
+    root: info
+    com.example.bankcards: info
+    org.hibernate.SQL: warn
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY}
+  issuer: bankcards
+  expiration-seconds: ${JWT_EXPIRATION_SECONDS}
+
+validation:
+  regex:
+    username: ${USERNAME_REGEX:^[A-Za-z][A-Za-z0-9_]{2,20}$}
+    card-number: ${CARD_NUMBER_REGEX:^\d{4} \d{4} \d{4} \d{4}$}
+
+crypto:
+  encryptor:
+    password: ${CARD_ENCRYPTOR_PASSWORD}
+    salt: ${CARD_ENCRYPTOR_SALT}
+  hasher:
+    secret-key: ${CARD_HASHER_SECRET_KEY}
+
